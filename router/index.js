@@ -8,6 +8,7 @@ const getFactoriesList = require('./getFactoriesList')
 const getAgencyList = require('./getAgencyList')
 const getServiceList = require('./getServiceList')
 const thongke_bigcorp = require('./thongke_bigcorp')
+const addNewProduct = require('./addNewProduct')
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use('/getFactoriesList', getFactoriesList)
 router.use('/getAgencyList', getAgencyList)
 router.use('/getServiceList', getServiceList)
 router.use('/thongkebigcorp', thongke_bigcorp)
+router.use('/addNewProduct' ,addNewProduct)
 
 module.exports = router
