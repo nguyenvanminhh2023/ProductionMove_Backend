@@ -2,7 +2,7 @@ const db = require('./index')
 
 exports.checkProduct = (user, data) => {
     const query = `SELECT * 
-                from dl_kho join san_pham on dl_kho.id_sp='${data.idsp}'
+                from dl_kho join san_pham on dl_kho.id_sp=san_pham.id_sp
                 where dl_kho.id_sp='${data.idsp}' and san_pham.id_tt=4 and dl_kho.id_dl=(SELECT dai_ly.id_dl from dai_ly where dai_ly.user='${user}')`
     return new Promise((resolve, reject) => {
         db.query(query, (err, results) => {
