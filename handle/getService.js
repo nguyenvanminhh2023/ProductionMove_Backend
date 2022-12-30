@@ -1,7 +1,8 @@
 const db = require('./index');
 
+//kiểm tra trạng thái sản phẩm
 exports.checkProduct = (id) => {
-    const query = `select * from san_pham where id_sp='${id}' and id_tt=3`
+    const query = `select * from san_pham where id_sp='${id}' and id_tt in (3, 7)`
     return new Promise((resolve, reject) => {
         db.query(query, (err, results) => {
             if (err) return reject(err);
@@ -10,6 +11,7 @@ exports.checkProduct = (id) => {
     });
 }
 
+//nhận bảo hành
 exports.getService = (user, data) => {
     const query = `insert into baohanh_dl_nhan(baohanh_dl_nhan.id_sp,lan_bh,baohanh_dl_nhan.id_dl,ngay_dl_nhan_bh,mo_ta)
     SELECT ban_hang.id_sp,san_pham.da_bh+1,(SELECT dai_ly.id_dl from dai_ly where dai_ly.user='${user}'),'${data.date}','${data.problem}'
